@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "dezalgo": "1.0.3",
-    "hexoid": "1.0.0",
+    "hexoid": "https://github.com/fabriciocs/hexoid#master",
     "once": "1.4.0",
     "qs": "6.9.3"
   },
@@ -61,8 +61,7 @@
     "verbose": true
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "commitlint": {
     "extends": [

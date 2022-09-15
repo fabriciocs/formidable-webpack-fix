@@ -2715,10 +2715,9 @@ hasha@^5.0.0:
     is-stream "^2.0.0"
     type-fest "^0.8.0"
 
-hexoid@1.0.0:
+"hexoid@https://github.com/fabriciocs/hexoid#master":
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/hexoid/-/hexoid-1.0.0.tgz#ad10c6573fb907de23d9ec63a711267d9dc9bc18"
-  integrity sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==
+  resolved "https://github.com/fabriciocs/hexoid#029de61ca54d58c47d34a08f4e35a55e0f9c807f"
 
 hosted-git-info@^2.1.4:
   version "2.8.8"
