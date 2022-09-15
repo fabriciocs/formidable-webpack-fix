@@ -5,7 +5,7 @@
 
 const os = require('os');
 const path = require('path');
-const hexoid = require('hexoid');
+const { hexoid } = require('hexoid');
 const once = require('once');
 const dezalgo = require('dezalgo');
 const { EventEmitter } = require('events');
@@ -282,16 +282,6 @@ class IncomingForm extends EventEmitter {
       return;
     }
 
-    // This MUST check exactly for undefined. You can not change it to !part.originalFilename.
-
-    // todo: uncomment when switch tests to Jest
-    // console.log(part);
-
-    // ? NOTE(@tunnckocore): no it can be any falsey value, it most probably depends on what's returned
-    // from somewhere else. Where recently I changed the return statements
-    // and such thing because code style
-    // ? NOTE(@tunnckocore): or even better, if there is no mimetype, then it's for sure a field
-    // ? NOTE(@tunnckocore): originalFilename is an empty string when a field?
     if (!part.mimetype) {
       let value = '';
       const decoder = new StringDecoder(
@@ -491,20 +481,20 @@ class IncomingForm extends EventEmitter {
   _newFile({ filepath, originalFilename, mimetype, newFilename }) {
     return this.options.fileWriteStreamHandler
       ? new VolatileFile({
-          newFilename,
-          filepath,
-          originalFilename,
-          mimetype,
-          createFileWriteStream: this.options.fileWriteStreamHandler,
-          hashAlgorithm: this.options.hashAlgorithm,
-        })
+        newFilename,
+        filepath,
+        originalFilename,
+        mimetype,
+        createFileWriteStream: this.options.fileWriteStreamHandler,
+        hashAlgorithm: this.options.hashAlgorithm,
+      })
       : new PersistentFile({
-          newFilename,
-          filepath,
-          originalFilename,
-          mimetype,
-          hashAlgorithm: this.options.hashAlgorithm,
-        });
+        newFilename,
+        filepath,
+        originalFilename,
+        mimetype,
+        hashAlgorithm: this.options.hashAlgorithm,
+      });
   }
 
   _getFileName(headerValue) {
@@ -577,7 +567,7 @@ class IncomingForm extends EventEmitter {
           const originalFilename = typeof part === 'string' ? part : part.originalFilename;
           return `${name}${this._getExtension(originalFilename)}`;
         }
-    
+
         return name;
       }
     }

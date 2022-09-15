@@ -31,7 +31,6 @@ class QuerystringParser extends Transform {
       len += this.buffer.length;
       buffer = Buffer.concat([this.buffer, buffer], len);
     }
-
     for (let i = this.buffer.length || 0; i < len; i += 1) {
       const c = buffer[i];
       if (this.readingKey) {
@@ -41,16 +40,13 @@ class QuerystringParser extends Transform {
           this.readingKey = false;
           this.sectionStart = i + 1;
         } else if (c === AMPERSAND) {
-          // just key, no value. Prepare to read another key
           this.emitField(this.getSection(buffer, i));
           this.sectionStart = i + 1;
         }
-        // VALUE, check for &
       } else if (c === AMPERSAND) {
         this.emitField(this.key, this.getSection(buffer, i));
         this.sectionStart = i + 1;
       }
-
       if (
         this.maxFieldLength &&
         i - this.sectionStart === this.maxFieldLength
@@ -66,8 +62,6 @@ class QuerystringParser extends Transform {
         );
       }
     }
-
-    // Prepare the remaining key or value (from sectionStart to the end) for the next write() or for end()
     len -= this.sectionStart;
     if (len) {
       // i.e. Unless the last character was a & or =
